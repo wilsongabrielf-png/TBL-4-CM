@@ -1,0 +1,25 @@
+1. Foreground (primeiro plano): O aplicativo está aberto e visível para o usuário. O usuário pode interagir com botões, telas e outros elementos.O Flutter está executando normalmente.
+
+Background (segundo plano): O aplicativo deixa de estar em primeiro plano. O usuário está utilizando outro aplicativo ou outra tela. O sistema pode limitar sua execução para economizar bateria.
+
+Terminated (encerrado): O processo do aplicativo foi encerrado. As variáveis que estavam na memória são perdidas. Para recuperar informações, precisamos utilizar armazenamento persistente.
+
+2. Porque o Android limita o Background para melhorar o desempenho, economizar bateria e controlar o consumo de recursos do dispositivo.
+
+3. Porque o Timer.periodic não é confiável para tarefas em Background porque depende do processo do aplicativo, que pode ser suspenso ou encerrado pelo Android.
+
+4. Flutter -> Servidor -> FCM -> Android
+Flutter: Aplicativo registra o dispositivo e obtém o token FCM.
+
+Servidor: Decide enviar uma notificação para determinado dispositivo.
+
+Firebase Cloud Messaging (FCM): Recebe e encaminha a mensagem.
+
+Android: Recebe a notificação e pode exibi-la ao usuário.
+
+O servidor solicita o envio, o FCM realiza a entrega e o aplicativo recebe ou processa a mensagem.
+
+5. O onMessage: recebe notificação com o aplicativo aberto (Foreground).
+O onMessageOpenedApp: detecta quando o usuário toca na notificação com o aplicativo em Background.
+O getInitialMessage: recupera a notificação que abriu o aplicativo encerrado (Terminated).	
+
